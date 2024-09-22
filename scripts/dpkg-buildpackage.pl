@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+#use 此函数将 MODULE 导出的所有函数或仅 LIST 引用的函数导入当前包的名称空间
 use strict;
 use warnings;
 
@@ -855,8 +856,10 @@ sub run_rules_cond_root {
 
 sub run_hook {
     my ($name, $enabled) = @_;
+    #取此名称对应的命令
     my $cmd = $hook{$name};
 
+    #如果没有注册命令，就退出
     return if not $cmd;
 
     info("running hook $name");
